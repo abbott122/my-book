@@ -1,0 +1,135 @@
+site_name: 云计算技术
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.prune
+    - navigation.top
+    #- navigation.indexes
+    - navigation.footer
+    - content.code.copy
+    - content.code.annotate
+    - content.code.select
+
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+      primary:  indigo
+
+# Repository
+# repo_name: squidfunk/mkdocs-material
+# repo_url: https://github.com/squidfunk/mkdocs-material
+
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/mastodon 
+      link: https://fosstodon.org/@squidfunk
+    - icon: fontawesome/brands/github
+    - icon: fontawesome/brands/gitlab
+    - icon: fontawesome/brands/x-twitter
+  consent:
+    title: Cookie consent
+    description: >- 
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+
+# Copyright
+copyright: Copyright &copy; 2025 - 2035 abbott
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - tables
+  - attr_list
+  - md_in_html
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+# plugins:
+#   - search
+#   - awesome-pages
+
+
+nav:
+  - Linux系统管理:
+    - 第一章 初识Linux系统: Linux系统管理/认识Linux系统/第一章Linux发展史/index.md
+    - 第二章 Linux系统基本管理: Linux系统管理/Linux系统基本管理/index.md
+
+  - 数据库: index.md
+  - Container:
+    - 容器基本概念: index.md
+
+  - Kubernetes: 
+    - 第一章 概述: Kubernetes/kubernetes概述/index.md
+    - 第二章 架构与组件: Kubernetes/Kubernetes架构与组件/index.md
+    - 第三章 部署: Kubernetes/kubernetes部署/index.md
+    - 第四章 组件: index.md
+    - 第五章 Pod: index.md
+    - 第六章 控制器: index.md
+    - 第七章 网络控制: index.md
+    - 第八章 存储: index.md
+    - 第九章 配置: index.md
+    - 第十章 安全: index.md
+    - 第十一章 调度、抢占: index.md
+  - OpenStack: 
+    - 第一章 理解云计算: OpenStack/index.md
+  - Ceph分布式存储:
+    - 第一章 理解分布式: Ceph分布式存储/什么是分布式存储/index.md
+    - 第二章 Ceph概述: Ceph分布式存储/Ceph简介/index.md
+  - DevOps: index.md
+  - AIOps: index.md
+  - Python: index.md
+  - Golang: 
+    - 基础部分: 编程语言/golang/Golang基础语法/index.md
+    - 进阶部分: 编程语言/golang/进阶部分/index.md
+    - 并发编程: 编程语言/golang/并发编程/index.md
+    - 网络编程: 编程语言/golang/网络编程与Web开发/index.md
+    - 项目实战: index.md
+
+ 
+  - Zabbix: 
+    - Zabbix概述: 监控系统/Zabbix/Zabbix概述/index.md
+    - Zabbix安装与配置: 监控系统/Zabbix/Zabbix安装与配置/index.md
+    - Zabbix监控项: 监控系统/Zabbix/Zabbix监控项/index.md
+    - Zabbix触发器与动作: 监控系统/Zabbix/Zabbix触发器与动作/index.md
+    - Zabbix图形与仪表盘: 监控系统/Zabbix/Zabbix图形与仪表盘/index.md
+    - Zabbix用户与权限: 监控系统/Zabbix/Zabbix用户与权限/index.md
+    - Zabbix高级功能: 监控系统/Zabbix/Zabbix高级功能/index.md
+    - Zabbix性能优化: 监控系统/Zabbix/Zabbix性能优化/index.md
+    - Zabbix故障排除与维护: 监控系统/Zabbix/Zabbix故障排除与维护/index.md
+    - Zabbix企业级应用: 监控系统/Zabbix/Zabbix企业级应用/index.md
+    - Zabbix实战案例: 监控系统/Zabbix/Zabbix实战案例/index.md
+    - Zabbix社区资源与支持: 监控系统/Zabbix/Zabbix社区资源与支持/index.md 
+  - Prometheus: 监控系统/Prometheus/index.md
+  - Grafana: 监控系统/Grafana/index.md
+  - Loki: 监控系统/Loki/index.md
+  - ELK: 监控系统/ELK/index.md
+
+
+
