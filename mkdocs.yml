@@ -80,6 +80,16 @@ nav:
   - Linux系统管理:
     - 第一章 初识Linux系统: Linux系统管理/认识Linux系统/第一章Linux发展史/index.md
     - 第二章 Linux系统基本管理: Linux系统管理/Linux系统基本管理/index.md
+    - 第三章 Linux文件系统: Linux系统管理/Linux文件系统/index.md
+    - 第四章 Linux用户与权限管理: Linux系统管理/Linux用户与权限管理/index.md
+    - 第五章 Linux进程管理: Linux系统管理/Linux进程管理/index.md
+    - 第六章 Linux网络管理: Linux系统管理/Linux网络管理/index.md
+    - 第七章 Linux存储管理: Linux系统管理/Linux存储管理/index.md
+    - 第八章 Linux服务管理: Linux系统管理/Linux服务管理/index.md
+    - 第九章 Linux日志管理: Linux系统管理/Linux日志管理/index.md
+    - 第十章 Linux安全管理: Linux系统管理/Linux安全管理/index.md
+    - 第十一章 Linux性能优化: Linux系统管理/Linux性能优化/index.md
+    - 第十二章 Linux故障排除: Linux系统管理/Linux故障排除/index.md 
 
   - 数据库: index.md
   - Container:
