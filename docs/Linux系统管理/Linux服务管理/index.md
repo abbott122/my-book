@@ -1,7 +1,7 @@
 
 ## web应用中间件
 
-[nginx](../../Linux服务管理/Web服务管理/nginx/index.md)<br>
+[nginx](../Linux服务管理/Web服务管理/nginx/index.md)<br>
 [apache](../Linux服务管理/Web服务管理/apache/index.md)<br>
 [tomcat](../Linux服务管理/Web服务管理/tomcat/index.md)<br>
 
