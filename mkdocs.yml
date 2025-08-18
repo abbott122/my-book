@@ -101,8 +101,8 @@ nav:
     - 第三章 部署: Kubernetes/kubernetes部署/index.md
     - 第四章 组件: index.md
     - 第五章 Pod: Kubernetes/Pod/index.md
-    - 第六章 控制器: index.md
-    - 第七章 网络控制: index.md
+    - 第六章 控制器: Kubernetes/控制器/index.md
+    - 第七章 网络控制: Kubernetes/网络控制/index.md
     - 第八章 存储: index.md
     - 第九章 配置: index.md
     - 第十章 安全: index.md
