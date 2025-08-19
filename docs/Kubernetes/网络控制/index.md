@@ -44,22 +44,40 @@ Kubernetes 的网络模型是一个非常重要的概念，它通过一系列控
 
 **Ingress 控制器**是负责管理从集群**外部**到集群**内部**服务的 HTTP 和 HTTPS 流量的控制器。
 
-* **Ingress**：它是一个 Kubernetes API 对象，用于定义一组路由规则，例如，将 `myapp.example.com` 的流量路由到 `my-app-service`。
-* **Ingress 控制器**：这是一个**外部**组件，通常是一个负载均衡器（如 Nginx、Traefik、HAProxy），它**监听** Ingress 对象并根据其中的规则动态配置自身的路由。
+* **Ingress**：
+
+> 它是一个 Kubernetes API 对象，用于定义一组路由规则，例如，将 `myapp.example.com` 的流量路由到 `my-app-service`。
+
+* **Ingress 控制器**：
+
+> 这是一个**外部**组件，通常是一个负载均衡器（如 Nginx、Traefik、HAProxy），它**监听** Ingress 对象并根据其中的规则动态配置自身的路由。
 
 **Ingress 的优势：**
-* **集中式路由**：你可以通过一个 Ingress 对象管理多个服务的外部访问规则，而不是为每个服务创建一个 NodePort 或 LoadBalancer。
-* **高级功能**：Ingress 控制器通常支持 SSL/TLS 终止、基于域名的虚拟主机、路径路由和请求重写等高级功能。
+
+* **集中式路由**：
+
+> 你可以通过一个 Ingress 对象管理多个服务的外部访问规则，而不是为每个服务创建一个 NodePort 或 LoadBalancer。
+* **高级功能**：
+
+>Ingress 控制器通常支持 SSL/TLS 终止、基于域名的虚拟主机、路径路由和请求重写等高级功能。
 
 
 ## 4. Network Policy 控制器
 
 **Network Policy 控制器**是一个用于实现**Pod 间防火墙规则**的控制器。
 
-* **Network Policy**：这是一个 Kubernetes API 对象，允许你定义一组入站（Ingress）和出站（Egress）的网络规则，以控制 Pod 之间的通信。
-* **Network Policy 控制器**：这个控制器通常由 CNI 插件实现（例如 Calico 或 Cilium），它**监听** Network Policy 对象，并将其规则转化为实际的网络防火墙规则。
+* **Network Policy**：
+
+>这是一个 Kubernetes API 对象，允许你定义一组入站（Ingress）和出站（Egress）的网络规则，以控制 Pod 之间的通信。
+
+* **Network Policy 控制器**：
+
+>这个控制器通常由 CNI 插件实现（例如 Calico 或 Cilium），它**监听** Network Policy 对象，并将其规则转化为实际的网络防火墙规则。
 
 **主要作用：**
-* **安全隔离**：默认情况下，所有 Pod 都可以相互通信。通过 Network Policy，你可以创建“微隔离”策略，例如，只允许前端服务访问后端数据库，从而增强应用的安全性。
+
+* **安全隔离**：
+  
+> 默认情况下，所有 Pod 都可以相互通信。通过 Network Policy，你可以创建“微隔离”策略，例如，只允许前端服务访问后端数据库，从而增强应用的安全性。
 
 这些控制器共同构建了 Kubernetes 强大而灵活的网络体系。它们将复杂的网络配置抽象化，让开发者和运维人员可以专注于应用本身，而无需关心底层的网络细节。

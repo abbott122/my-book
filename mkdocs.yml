@@ -103,7 +103,7 @@ nav:
     - 第五章 Pod: Kubernetes/Pod/index.md
     - 第六章 控制器: Kubernetes/控制器/index.md
     - 第七章 网络控制: Kubernetes/网络控制/index.md
-    - 第八章 存储: index.md
+    - 第八章 存储: Kubernetes/存储/index.md
     - 第九章 配置: index.md
     - 第十章 安全: index.md
     - 第十一章 调度、抢占: index.md
