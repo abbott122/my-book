@@ -93,9 +93,23 @@ nav:
 
   - 数据库: index.md
   - Container:
-    - 容器基本概念: index.md
-
-  - Kubernetes: 
+    - 容器基本概念: Container/index.md
+    - Docker: Container/Docker/index.md
+    - Containerd: index.md
+    - Podman: index.md
+    - Kata Containers: index.md
+    - rkt: index.md
+    - LXC/LXD: index.md
+    - Open Container Initiative (OCI): index.md
+    - Container Networking: index.md
+    - Container Storage: index.md
+    - Container Security: index.md
+    - Container Orchestration: index.md
+    - Container Monitoring: index.md
+    - Container Logging: index.md
+    - Container Performance Tuning: index.md
+    - Container Troubleshooting: index.md
+  - Kubernetes:   
     - 第一章 概述: Kubernetes/kubernetes概述/index.md
     - 第二章 架构与组件: Kubernetes/Kubernetes架构与组件/index.md
     - 第三章 部署: Kubernetes/kubernetes部署/index.md
@@ -104,11 +118,69 @@ nav:
     - 第六章 控制器: Kubernetes/控制器/index.md
     - 第七章 网络控制: Kubernetes/网络控制/index.md
     - 第八章 存储: Kubernetes/存储/index.md
-    - 第九章 配置: index.md
-    - 第十章 安全: index.md
-    - 第十一章 调度、抢占: index.md
+    - 第九章 配置: Kubernetes/配置/index.md
+    - 第十章 安全: KUbernetes/安全/index.md
+    - 第十一章 调度、抢占: KUbernetes/调度与抢占/index.md
+    - 第十二章 监控与日志: Kubernetes/监控与日志/index.md
+    - 第十三章 升级与回滚: Kubernetes/升级与回滚/index.md
+    - 第十四章 集群管理: Kubernetes/集群管理/index.md
+    - 第十五章 资源管理: Kubernetes/资源管理/index.md
+    - 第十六章 服务发现与负载均衡: Kubernetes/服务发现与负载均衡/index.md
+    - 第十七章 Helm: Kubernetes/Helm/index.md
+    - 第十八章 Operator: Kubernetes/Operator/index.md 
+  - OpenShift:
+    - 第一章 OpenShift概述: OpenShift/OpenShift概述/index.md
+    - 第二章 OpenShift架构: OpenShift/OpenShift架构/index.md
+    - 第三章 OpenShift安装: OpenShift/OpenShift安装/index.md
+    - 第四章 OpenShift项目管理: OpenShift/OpenShift项目管理/index.md
+    - 第五章 OpenShift应用管理: OpenShift/OpenShift应用管理/index.md
+    - 第六章 OpenShift网络管理: OpenShift/OpenShift网络管理/index.md
+    - 第七章 OpenShift存储管理: OpenShift/OpenShift存储管理/index.md
+    - 第八章 OpenShift安全管理: OpenShift/OpenShift安全管理/index.md
+    - 第九章 OpenShift监控与日志: OpenShift/OpenShift监控与日志/index.md
+    - 第十章 OpenShift升级与回滚: OpenShift/OpenShift升级与回滚/index.md
+    - 第十一章 OpenShift集群管理: OpenShift/OpenShift集群管理/index.md
+    - 第十二章 OpenShift资源管理: OpenShift/OpenShift资源管理/index.md
+    - 第十三章 OpenShift服务发现与负载均衡: OpenShift/OpenShift服务发现与负载均衡/index.md
+    - 第十四章 OpenShift CI/CD: OpenShift/OpenShift CI-CD/index.md
+    - 第十五章 OpenShift Operator: OpenShift/OpenShift Operator/index.md
+    - 第十六章 OpenShift多集群管理: OpenShift/OpenShift多集群管理/index.md
+    - 第十七章 OpenShift性能优化: OpenShift/OpenShift性能优化/index.md
+    - 第十八章 OpenShift故障排除: OpenShift/OpenShift故障排除/index.md
+    - 第十九章 OpenShift社区与资源: OpenShift/OpenShift社区与资源/index.md
+  - Ansible:
+    - 第一章 Ansible概述: Ansible/Ansible概述/index.md
+    - 第二章 Ansible安装与配置: Ansible/Ansible安装与配置/index.md
+    - 第三章 Ansible基础: Ansible/Ansible基础/index.md
+    - 第四章 Ansible Playbook: Ansible/Ansible Playbook/index.md
+    - 第五章 Ansible角色: Ansible/Ansible角色/index.md
+    - 第六章 Ansible模块: Ansible/Ansible模块/index.md
+    - 第七章 Ansible变量与模板: Ansible/Ansible变量与模板/index.md
+    - 第八章 Ansible循环与条件: Ansible/Ansible循环与条件/index.md
+    - 第九章 Ansible错误处理: Ansible/Ansible错误处理/index.md
+    - 第十章 Ansible高级功能: Ansible/Ansible高级功能/index.md
+    - 第十一章 Ansible性能优化: Ansible/Ansible性能优化/index.md
+    - 第十二章 Ansible故障排除: Ansible/Ansible故障排除/index.md
+    - 第十三章 Ansible实战案例: Ansible/Ansible实战案例/index.md
+    - 第十四章 Ansible社区资源: Ansible/Ansible社区资源/index.md
+
   - OpenStack: 
     - 第一章 理解云计算: OpenStack/index.md
+    - 第二章 OpenStack概述: OpenStack/OpenStack概述/index.md
+    - 第三章 OpenStack架构: OpenStack/OpenStack架构/index.md 
+    - 第四章 OpenStack安装: OpenStack/OpenStack安装/index.md
+    - 第五章 OpenStack计算服务: OpenStack/OpenStack计算服务/index.md
+    - 第六章 OpenStack存储服务: OpenStack/OpenStack存储服务/index.md
+    - 第七章 OpenStack网络服务: OpenStack/OpenStack网络服务/index.md  
+    - 第八章 OpenStack身份服务: OpenStack/OpenStack身份服务/index.md
+    - 第九章 OpenStack镜像服务: OpenStack/OpenStack镜像服务/index
+    - 第十章 OpenStack监控与日志: OpenStack/OpenStack监控与日志/index.md
+    - 第十一章 OpenStack安全: OpenStack/OpenStack安全/index.md
+    - 第十二章 OpenStack性能优化: OpenStack/OpenStack性能优化/index.md
+    - 第十三章 OpenStack故障排除: OpenStack/OpenStack故障排除/index.md
+    - 第十四章 OpenStack实战案例: OpenStack/OpenStack实战案例/index.md
+    - 第十五章 OpenStack社区资源: OpenStack/OpenStack社区资源/index.md
+
   - Ceph分布式存储:
     - 第一章 理解分布式: Ceph分布式存储/什么是分布式存储/index.md
     - 第二章 Ceph概述: Ceph分布式存储/Ceph简介/index.md
@@ -123,23 +195,14 @@ nav:
     - 项目实战: index.md
 
  
-  - Zabbix: 
-    - Zabbix概述: 监控系统/Zabbix/Zabbix概述/index.md
-    - Zabbix安装与配置: 监控系统/Zabbix/Zabbix安装与配置/index.md
-    - Zabbix监控项: 监控系统/Zabbix/Zabbix监控项/index.md
-    - Zabbix触发器与动作: 监控系统/Zabbix/Zabbix触发器与动作/index.md
-    - Zabbix图形与仪表盘: 监控系统/Zabbix/Zabbix图形与仪表盘/index.md
-    - Zabbix用户与权限: 监控系统/Zabbix/Zabbix用户与权限/index.md
-    - Zabbix高级功能: 监控系统/Zabbix/Zabbix高级功能/index.md
-    - Zabbix性能优化: 监控系统/Zabbix/Zabbix性能优化/index.md
-    - Zabbix故障排除与维护: 监控系统/Zabbix/Zabbix故障排除与维护/index.md
-    - Zabbix企业级应用: 监控系统/Zabbix/Zabbix企业级应用/index.md
-    - Zabbix实战案例: 监控系统/Zabbix/Zabbix实战案例/index.md
-    - Zabbix社区资源与支持: 监控系统/Zabbix/Zabbix社区资源与支持/index.md 
-  - Prometheus: 监控系统/Prometheus/index.md
-  - Grafana: 监控系统/Grafana/index.md
-  - Loki: 监控系统/Loki/index.md
-  - ELK: 监控系统/ELK/index.md
+  - 监控系统:
+    - zabbix: 监控系统/Zabbix/index.md 
+    - Prometheus: 监控系统/Prometheus/index.md
+    - Grafana: 监控系统/Grafana/index.md
+    - Loki: 监控系统/Loki/index.md
+    - ELK: 监控系统/ELK/index.md
+  
+
 
 
 
