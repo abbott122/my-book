@@ -70,3 +70,143 @@ Secret 的工作方式与 ConfigMap 类似，但有以下关键区别：
 | **场景** | 数据库 URL、日志级别、应用配置 | 数据库密码、API Token、TLS 证书 |
 
 ConfigMap 和 Secret 的主要价值在于将应用的**可执行部分（容器镜像）**与**可配置部分（配置数据）**解耦。这使得应用的部署和管理更加灵活和安全，是实现云原生应用部署的关键。
+
+在 Kubernetes 中，配置管理是应用部署的关键环节。它通过将配置数据与应用镜像分离，使得应用更具可移植性和可扩展性。本回答将通过两个核心的配置对象：**ConfigMap** 和 **Secret**，结合具体的案例和常用命令，来详细解释配置管理。
+
+-----
+
+## 核心概念回顾
+
+  * **ConfigMap**：用于存储**非敏感**的配置数据，如环境变量、命令行参数或配置文件。它以键值对的形式存储，可以被 Pod 轻松访问。
+  * **Secret**：用于存储**敏感**数据，如密码、API 密钥或 SSH 密钥。它通过 Base64 编码，并以加密的方式存储在 Etcd 中，以确保数据的安全。
+
+-----
+
+### 配置案例：一个 Web 应用的部署
+
+假设我们有一个 Web 应用，它需要一些配置：
+
+  * 数据库地址：`database-url`（非敏感）
+  * 网站标题：`site-title`（非敏感）
+  * 数据库密码：`database-password`（敏感）
+
+我们将使用 **ConfigMap** 和 **Secret** 来管理这些配置，并在 Deployment 中引用它们。
+
+#### 步骤 1: 创建 ConfigMap 和 Secret
+
+首先，我们通过 `kubectl` 命令来创建 ConfigMap 和 Secret。
+
+**创建 ConfigMap**：
+
+```bash
+kubectl create configmap web-config --from-literal=database-url=mysql.database.svc.cluster.local --from-literal=site-title="My Awesome Blog"
+```
+
+**创建 Secret**：
+
+```bash
+kubectl create secret generic web-secret --from-literal=database-password="supersecurepassword123"
+```
+
+这个命令会将密码进行 Base64 编码并存储为 Secret。
+
+#### 步骤 2: 在 Deployment 中引用配置
+
+接下来，我们创建一个 Deployment，并在 Pod 模板中引用我们刚刚创建的 `ConfigMap` 和 `Secret`。
+
+`web-app-deployment.yaml`
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: web-app
+        image: my-web-app:1.0
+        ports:
+        - containerPort: 80
+        env:
+          # 从 ConfigMap 引用非敏感配置
+          - name: DB_URL
+            valueFrom:
+              configMapKeyRef:
+                name: web-config
+                key: database-url
+          - name: SITE_TITLE
+            valueFrom:
+              configMapKeyRef:
+                name: web-config
+                key: site-title
+          # 从 Secret 引用敏感配置
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: web-secret
+                key: database-password
+```
+
+在这个配置中：
+
+  * `DB_URL` 和 `SITE_TITLE` 这两个环境变量的值来自 `web-config` ConfigMap 中的对应键。
+  * `DB_PASSWORD` 环境变量的值来自 `web-secret` Secret 中的 `database-password` 键。
+
+-----
+
+### 常用命令
+
+管理 ConfigMap 和 Secret 的命令与管理其他 Kubernetes 对象类似：
+
+1.  **创建配置**：
+
+      * 通过文件：`kubectl create configmap <name> --from-file=<file>`
+      * 通过字面值：`kubectl create configmap <name> --from-literal=<key>=<value>`
+      * 创建 Secret：`kubectl create secret generic <name> --from-literal=<key>=<value>`
+
+2.  **查看 ConfigMap/Secret 列表**：
+
+    ```bash
+    kubectl get configmaps
+    kubectl get secrets
+    ```
+
+3.  **查看 ConfigMap/Secret 详细内容**：
+
+      * 查看 ConfigMap 详细信息：
+        ```bash
+        kubectl describe configmap web-config
+        ```
+      * 查看 ConfigMap 内容：
+        ```bash
+        kubectl get configmap web-config -o yaml
+        ```
+      * 查看 Secret 内容（注意：内容是 Base64 编码的）：
+        ```bash
+        kubectl get secret web-secret -o yaml
+        ```
+      * **解码 Secret 内容**：
+        ```bash
+        kubectl get secret web-secret -o jsonpath='{.data.database-password}' | base64 --decode
+        ```
+
+4.  **更新配置**：
+
+      * 修改 ConfigMap/Secret YAML 文件：`kubectl apply -f configmap.yaml` 或 `kubectl apply -f secret.yaml`
+      * 更新后，需要重启或重新部署 Pod 才能使配置生效，因为 Pod 默认只在启动时加载配置。
+
+5.  **删除配置**：
+
+    ```bash
+    kubectl delete configmap web-config
+    kubectl delete secret web-secret
+    ```

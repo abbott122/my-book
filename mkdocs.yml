@@ -91,7 +91,14 @@ nav:
     - 第十一章 Linux性能优化: Linux系统管理/Linux性能优化/index.md
     - 第十二章 Linux故障排除: Linux系统管理/Linux故障排除/index.md 
 
-  - 数据库: index.md
+  - 数据库:
+    - 数据库: 数据库/index.md
+    - MySQL: 数据库/MySQL/index.md
+    - PostgreSQL: 数据库/PostgreSQL/index.md
+    - MongoDB: 数据库/MongoDB/index.md
+    - Redis: 数据库/Redis/index.md  
+  
+  
   - Container:
     - 容器基本概念: Container/index.md
     - Docker: Container/Docker/index.md
@@ -119,8 +126,8 @@ nav:
     - 第七章 网络控制: Kubernetes/网络控制/index.md
     - 第八章 存储: Kubernetes/存储/index.md
     - 第九章 配置: Kubernetes/配置/index.md
-    - 第十章 安全: KUbernetes/安全/index.md
-    - 第十一章 调度、抢占: KUbernetes/调度与抢占/index.md
+    - 第十章 安全: Kubernetes/安全/index.md
+    - 第十一章 调度、抢占: Kubernetes/调度与抢占/index.md
     - 第十二章 监控与日志: Kubernetes/监控与日志/index.md
     - 第十三章 升级与回滚: Kubernetes/升级与回滚/index.md
     - 第十四章 集群管理: Kubernetes/集群管理/index.md

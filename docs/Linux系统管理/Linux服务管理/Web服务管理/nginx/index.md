@@ -784,17 +784,17 @@ http {
 
 ## **六、Nginx 高级功能**
 
-1. 缓存配置
+### 1. 缓存配置
 
    * Proxy Cache 缓存
    * FastCGI Cache 缓存
    * 缓存清理策略
-2. 动静分离
+### 2. 动静分离
 
    * 静态文件由 Nginx 处理
    * 动态请求转发到后端应用（PHP-FPM、Tomcat、Flask、Django 等）
 
-3. Rewrite 与重定向
+### 3. Rewrite 与重定向
 
    * rewrite 规则
    * permanent / redirect / return
@@ -803,40 +803,41 @@ http {
 
 ## **七、Nginx 性能优化**
 
-1. Worker 进程与连接数调优
-2. Gzip 压缩配置
-3. Keepalive 长连接
-4. 日志切割与优化
+### 1. Worker 进程与连接数调优
+### 2. Gzip 压缩配置
+### 3. Keepalive 长连接
+### 4. 日志切割与优化
 
 ---
 
 ## **八、Nginx 实战案例**
 
-1. LNMP 架构（Linux + Nginx + MySQL + PHP）
-2. Nginx + Tomcat/Java Web 应用
-3. Nginx + Flask/Django
-4. Nginx + Docker + 微服务网关
+### 1. LNMP 架构（Linux + Nginx + MySQL + PHP）
+### 2. Nginx + Tomcat/Java Web 应用
+### 3. Nginx + Flask/Django
+### 4. Nginx + Docker + 微服务网关
 
 ---
 
 ## **九、Nginx 运维与监控**
 
-1. 常见错误与排查方法
+### 1. 常见错误与排查方法
 
    * 502 Bad Gateway
    * 504 Gateway Timeout
    * 413 Request Entity Too Large
-2. Nginx 日志分析
-3. 状态监控模块（stub\_status）
-4. 配合 Prometheus + Grafana 监控
+
+### 2. Nginx 日志分析
+### 3. 状态监控模块（stub\_status）
+### 4. 配合 Prometheus + Grafana 监控
 
 ---
 
 ## **十、Nginx 模块扩展**
 
-1. 官方模块与第三方模块
-2. 动态模块编译
-3. 常见第三方模块案例：
+### 1. 官方模块与第三方模块
+### 2. 动态模块编译
+### 3. 常见第三方模块案例：
 
    * Lua 模块（OpenResty）
    * GeoIP 模块
