@@ -1,9 +1,20 @@
 # **第三部分：数据库管理与运维**
 
-## 1. **数据库安装与配置**
+## 一、 **数据库安装与配置**
 
-   * MySQL / PostgreSQL 安装
-   * 数据库参数配置（内存、连接池、日志）
+### MySQL 
+
+<div style="background-color: #e6f7ff; border-left: 5px solid #1890ff; padding: 10px; border-radius: 5px; margin: 10px 0;">
+  <strong>💡 安装方式：</strong> 
+</div>
+
+### PostgreSQL
+<div style="background-color: #e6f7ff; border-left: 5px solid #1890ff; padding: 10px; border-radius: 5px; margin: 10px 0;">
+  <strong>💡 安装方式：</strong> 
+</div>
+
+
+### 数据库参数配置（内存、连接池、日志）
 
 ## 2. **数据备份与恢复**
 
