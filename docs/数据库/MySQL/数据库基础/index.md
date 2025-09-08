@@ -100,14 +100,399 @@ Redis：高性能的键值型 NoSQL 数据库，主要用于缓存、会话管�
 
 ## 二、 **关系数据库模型**
 
-   * 表、行、列、主键、外键、索引
-   * 实体-联系模型（E-R 模型）
-   * 数据约束（主键约束、唯一约束、外键约束、非空、检查约束）
 
-### 3. **SQL 基础**
 
-   * DDL：CREATE、ALTER、DROP
-   * DML：INSERT、UPDATE、DELETE
-   * DQL：SELECT（WHERE、ORDER BY、GROUP BY、HAVING、LIMIT）
-   * DCL：用户与权限管理
+## 三、 **SQL 基础**
+
+> SQL（Structured Query Language，结构化查询语言）是用于管理和操作关系型数据库的标准语言。它广泛应用于数据查询、数据操作、数据定义和数据控制。以下是对SQL语言基础的详细讲解，涵盖其核心概念、语法和常见操作。
+
+---
+
+### 3.1 SQL 概述
+
+SQL 是一种声明式语言，用户通过描述“想要什么”而不是“如何做”来与数据库交互。SQL 的主要功能包括：
+<div>
+  <ul>
+      <li>数据查询：从数据库中检索数据（如 <code>SELECT</code>）。 </li>
+      <li>数据操作：插入（`INSERT`）、更新（<code>UPDATE</code>）、删除（<code>DELETE</code>）数据。</li>
+      <li>数据定义：定义和修改数据库结构（如 <code>CREATE、ALTER、DROP</code>）。</li>
+      <li>数据控制：管理访问权限和安全（如 <code>GRANT、REVOKE</code>）。</li>
+  </ul>
+</div>
+SQL 适用于关系型数据库管理系统（RDBMS），如 MySQL、PostgreSQL、SQL Server、Oracle 等。虽然不同数据库系统对 SQL 的实现略有差异，但标准 SQL（ANSI/ISO 标准）是通用的。
+
+---
+
+### 3.2 SQL 的基本组成
+
+SQL 语句通常由以下几类命令组成：
+
+  1. **DL（Data Definition Language，数据定义语言）**：
+    - 用于定义和修改数据库结构。
+    - 常见命令：`CREATE`、`ALTER`、`DROP`、`TRUNCATE`。
+  
+  2. **DML（Data Manipulation Language，数据操作语言）**：
+    - 用于操作数据库中的数据。
+    - 常见命令：`SELECT`、`INSERT`、`UPDATE`、`DELETE`。
+
+  3. **DCL（Data Control Language，数据控制语言）**：
+    - 用于定义访问权限和安全级别。
+    - 常见命令：`GRANT`、`REVOKE`。
+
+  4. **TCL（Transaction Control Language，事务控制语言）**：
+    - 用于管理事务。
+    - 常见命令：`COMMIT`、`ROLLBACK`、`SAVEPOINT`。
+---
+
+### 3.3 SQL 基础语法
+以下是 SQL 语言的核心语法和操作，结合示例逐步讲解。
+
+#### 1. 数据查询（SELECT）
+
+`SELECT` 是 SQL 中最常用的语句，用于从数据库中检索数据。
+
+**基本语法**：
+```sql
+SELECT column1, column2, ... 
+FROM table_name 
+WHERE condition 
+GROUP BY column 
+HAVING condition 
+ORDER BY column [ASC | DESC];
+```
+
+**示例**：
+
+假设有一个名为 `students` 的表，结构如下：
+
+| id  | name    | age | score |
+|-----|---------|-----|-------|
+| 1   | Alice   | 20  | 85    |
+| 2   | Bob     | 22  | 90    |
+| 3   | Charlie | 19  | 78    |
+
+- 查询所有学生的姓名和年龄：
+
+```sql
+SELECT name, age 
+FROM students;
+```
+结果：
+
+| name    | age |
+|---------|-----|
+| Alice   | 20  |
+| Bob     | 22  |
+| Charlie | 19  |
+
+- 查询年龄大于 20 的学生：
+
+```sql
+SELECT name, age 
+FROM students 
+WHERE age > 20;
+```
+
+结果：
+
+| name | age |
+|------|-----|
+| Bob  | 22  |
+
+- 按分数降序排序：
+
+```sql
+SELECT name, score 
+FROM students 
+ORDER BY score DESC;
+```
+结果：
+
+| name    | score |
+|---------|-------|
+| Bob     | 90    |
+| Alice   | 85    |
+| Charlie | 78    |
+
+**常用子句**：
+
+- `WHERE`：过滤条件（如 `age > 20`、`name = 'Alice'`）。
+
+- `GROUP BY`：按列分组，常与聚合函数（如 `COUNT`、`SUM`、`AVG`、`MAX`、`MIN`）一起使用。
+
+- `HAVING`：过滤分组结果。
+
+- `ORDER BY`：排序，`ASC`（升序，默认）或 `DESC`（降序）。
+
+#### 2. 数据操作（INSERT, UPDATE, DELETE）
+这些语句用于修改数据库中的数据。
+
+- **插入数据（INSERT）**：
+```sql
+INSERT INTO table_name (column1, column2, ...) 
+VALUES (value1, value2, ...);
+```
+示例：
+```sql
+INSERT INTO students (id, name, age, score) 
+VALUES (4, 'David', 21, 88);
+```
+
+- **更新数据（UPDATE）**：
+```sql
+UPDATE table_name 
+SET column1 = value1, column2 = value2, ... 
+WHERE condition;
+```
+示例：
+```sql
+UPDATE students 
+SET score = 92 
+WHERE name = 'Alice';
+```
+
+- **删除数据（DELETE）**：
+```sql
+DELETE FROM table_name 
+WHERE condition;
+```
+示例：
+```sql
+DELETE FROM students 
+WHERE age < 20;
+```
+
+**注意**：`WHERE` 子句非常重要，若省略可能导致整个表的数据被更新或删除。
+
+#### 3. 数据定义（CREATE, ALTER, DROP）
+这些语句用于定义或修改数据库结构。
+
+- **创建表（CREATE TABLE）**：
+```sql
+CREATE TABLE table_name (
+    column1 datatype [constraints],
+    column2 datatype [constraints],
+    ...
+);
+```
+示例：
+```sql
+CREATE TABLE students (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    age INT,
+    score DECIMAL(5,2)
+);
+```
+- 数据类型：`INT`（整数）、`VARCHAR`（字符串）、`DECIMAL`（小数）、`DATE`（日期）等。
+
+- 约束：`PRIMARY KEY`（主键）、`NOT NULL`（非空）、`FOREIGN KEY`（外键）、`UNIQUE`（唯一）等。
+
+- **修改表（ALTER TABLE）**：
+```sql
+ALTER TABLE table_name 
+ADD column_name datatype;
+```
+示例：
+```sql
+ALTER TABLE students 
+ADD email VARCHAR(100);
+```
+
+- **删除表（DROP TABLE）**：
+```sql
+DROP TABLE table_name;
+```
+示例：
+```sql
+DROP TABLE students;
+```
+
+#### 4. 数据控制（GRANT, REVOKE）
+
+这些语句用于管理数据库的访问权限。
+
+- **授予权限（GRANT）**：
+
+```sql
+GRANT privilege_name ON table_name TO user;
+```
+示例：
+```sql
+GRANT SELECT, INSERT ON students TO 'user1';
+```
+
+- **撤销权限（REVOKE）**：
+
+```sql
+REVOKE privilege_name ON table_name FROM user;
+```
+示例：
+
+```sql
+REVOKE INSERT ON students FROM 'user1';
+```
+
+#### 5. 事务控制（COMMIT, ROLLBACK）
+
+事务是一组 SQL 操作，要么全部成功，要么全部失败。
+
+- **提交事务（COMMIT）**：
+
+```sql
+COMMIT;
+```
+
+- **回滚事务（ROLLBACK）**：
+
+```sql
+ROLLBACK;
+```
+
+示例：
+
+```sql
+BEGIN TRANSACTION;
+INSERT INTO students (id, name, age, score) VALUES (5, 'Eve', 23, 95);
+UPDATE students SET score = 80 WHERE name = 'Eve';
+COMMIT;
+```
+
+若中途发生错误，可用 `ROLLBACK` 撤销操作。
+
+---
+
+### 3.4 SQL 的高级特性
+
+以下是一些 SQL 的高级功能，适合进一步学习：
+
+**聚合函数**：
+<ul>
+<li><code>COUNT</code>：统计行数。</li>
+<li><code>SUM</code>：求和。</li>
+<li><code>AVG</code>：平均值。</li>
+<li><code>MAX/MIN</code>：最大/最小值。</li>
+</ul>
+   示例：
+   ```sql
+   SELECT AVG(score) 
+   FROM students 
+   WHERE age > 20;
+   ```
+
+**连接（JOIN）**：
+
+> 用于合并多个表的数据。
+<div>
+  <ul>
+    <li><code>INNER JOIN</code>：返回匹配的记录。</li>
+    <li><code>LEFT JOIN</code>：返回左表所有记录，右表无匹配记录则返回 NULL。</li>
+    <li><code>RIGHT JOIN</code>：类似 LEFT JOIN，反向操作。</li>
+    <li><code>FULL JOIN</code>：返回两表所有记录。</li>
+  </ul>
+</div>
+
+   示例：
+   ```sql
+   SELECT s.name, c.course_name 
+   FROM students s 
+   INNER JOIN courses c ON s.id = c.student_id;
+   ```
+
+**子查询**：
+> 在查询中嵌套另一个查询。
+  
+示例：
+
+   ```sql
+   SELECT name 
+   FROM students 
+   WHERE score > (SELECT AVG(score) FROM students);
+   ```
+**索引**：
+
+   提高查询性能。
+
+   ```sql
+   CREATE INDEX idx_name ON students(name);
+   ```
+
+**视图（VIEW）**：
+
+   虚拟表，基于查询结果。
+
+   ```sql
+   CREATE VIEW high_scores AS 
+   SELECT name, score 
+   FROM students 
+   WHERE score > 85;
+   ```
+
+---
+
+### 3.5 SQL 最佳实践
+
+1. **规范命名**：表名、列名使用有意义的英文单词，避免保留字。
+
+2. **使用注释**：在复杂查询中使用 `--` 或 `/* */` 添加注释。
+
+3. **避免 SELECT ***：明确指定需要的列，减少资源消耗。
+
+4. **小心 WHERE 条件**：确保条件准确，避免意外修改或删除数据。
+
+5. **优化查询**：使用索引、分析查询计划（`EXPLAIN`）来提高性能。
+
+---
+
+### 3.6 SQL 的学习建议
+
+1. **实践为主**：使用 MySQL、PostgreSQL 或 SQLite 等工具进行练习。
+
+2. **在线资源**：如 LeetCode、HackerRank 提供 SQL 练习题。
+
+3. **理解数据库设计**：学习规范化（Normalization）和 ER 图。
+
+4. **掌握具体数据库的特性**：如 MySQL 的 `LIMIT`、SQL Server 的 `TOP`。
+
+---
+
+### 3.7 示例数据库操作
+以下是一个完整的示例，展示从创建表到查询的流程：
+
+```sql
+-- 创建表
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50) NOT NULL,
+    department VARCHAR(50),
+    salary DECIMAL(10,2)
+);
+
+-- 插入数据
+INSERT INTO employees (emp_id, emp_name, department, salary) 
+VALUES 
+    (1, 'Alice', 'HR', 50000),
+    (2, 'Bob', 'IT', 60000),
+    (3, 'Charlie', 'HR', 55000);
+
+-- 查询数据
+SELECT emp_name, salary 
+FROM employees 
+WHERE department = 'HR' 
+ORDER BY salary DESC;
+
+-- 更新数据
+UPDATE employees 
+SET salary = 58000 
+WHERE emp_name = 'Charlie';
+
+-- 删除数据
+DELETE FROM employees 
+WHERE emp_id = 1;
+```
+
+---
+
+### 3.8 总结
+SQL 是操作关系型数据库的核心语言，掌握其基础语法（如 `SELECT`、`INSERT`、`UPDATE`、`DELETE`）和高级特性（如 `JOIN`、子查询）是数据库开发的基础。通过不断实践和优化查询，你可以高效地管理数据并应对复杂需求。
 

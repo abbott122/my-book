@@ -613,7 +613,7 @@ COMMIT;
 
 ### 索引的分类（B+树索引、哈希索引、全文索引）
 
-索引是存储在数据库中的特殊数据结构，用于加速查询（如WHERE、JOIN、ORDER BY）。MySQL（InnoDB/MyISAM）支持多种索引类型，每种适用于特定场景。
+> 索引是存储在数据库中的特殊数据结构，用于加速查询（如WHERE、JOIN、ORDER BY）。MySQL（InnoDB/MyISAM）支持多种索引类型，每种适用于特定场景。
 
 #### 1. **B+树索引（B+ Tree Index）**：
    - **定义**：基于B+树结构，数据按顺序存储，叶节点包含数据或指针，适合范围查询和排序。
@@ -643,7 +643,7 @@ COMMIT;
      SELECT * FROM Products WHERE Name = '手机';
      ```
 
-3. **全文索引（FULLTEXT Index）**：
+#### 3. **全文索引（FULLTEXT Index）**：
    - **定义**：用于全文搜索，基于倒排索引（Inverted Index），支持自然语言或布尔模式搜索。
    - **特点**：
      - 适用于文本字段（如`VARCHAR`、`TEXT`），支持关键词搜索（`MATCH ... AGAINST`）。
@@ -657,8 +657,11 @@ COMMIT;
      ```
 
 **其他索引类型**（补充）：
+
 - **唯一索引（Unique Index）**：确保列值唯一（如`CustomerID`）。
+  
 - **复合索引（Composite Index）**：多列组合索引，适合多条件查询。
+
 - **覆盖索引（Covering Index）**：索引包含查询所需所有列，免回表。
 
 ---
@@ -666,20 +669,29 @@ COMMIT;
 ### 索引的优缺点与使用场景
 
 **优点**：
+
 1. **加速查询**：减少扫描行数，提升SELECT、JOIN、WHERE性能。
 2. **支持排序和分组**：B+树索引加速`ORDER BY`和`GROUP BY`。
-3. **覆盖索引优化**：直接从索引读取数据，免查询表（高性能）。
+3. **覆盖索引优化**：直接从索引读取数据，免查询表（高性能）。</br>
    - 示例：`SELECT CustomerID FROM Orders WHERE CustomerID = 1;` 若`idx_customer`存在，直接用索引。
 
 **缺点**：
+
 1. **存储开销**：索引占用额外磁盘空间（B+树索引较大）。
+   
 2. **写操作变慢**：INSERT、UPDATE、DELETE需更新索引，增加开销。
+
 3. **维护复杂**：索引过多导致维护成本高，需定期优化（如`ANALYZE TABLE`）。
+
 4. **可能失效**：查询条件用函数（如`WHERE UPPER(Name) = 'PHONE'`）或不匹配最左前缀，索引无效。
 
+
 **使用场景**：
+
 - **B+树索引**：
+
   - **场景**：范围查询（如`Price BETWEEN 100 AND 500`）、排序、JOIN频繁的列（如`Orders.CustomerID`）。
+
   - **示例**：电商系统查询某顾客订单历史。
     ```sql
     SELECT o.OrderDate, p.Name
@@ -688,10 +700,13 @@ COMMIT;
     JOIN Products p ON oi.ProductID = p.ProductID
     WHERE o.CustomerID = 1;
     ```
+
     - 索引：`CREATE INDEX idx_customer ON Orders (CustomerID);`
 
 - **哈希索引**：
+
   - **场景**：高频等值查询，数据静态（如产品SKU查找）。
+
   - **示例**：快速查找特定产品。
     ```sql
     SELECT * FROM Products WHERE Name = '耳机';
@@ -706,26 +721,37 @@ COMMIT;
     ```
 
 **注意**：
+
 - 选择性高的列（如`CustomerID`）适合索引，低选择性（如`Gender`）效果差。
+
 - 复合索引需遵循最左前缀原则（如索引`(A,B)`支持`WHERE A=1 AND B=2`，不支持`WHERE B=2`）。
 
 ---
 
 ### SQL 性能分析（EXPLAIN）
 
-`EXPLAIN`是MySQL分析查询执行计划的工具，显示如何扫描表、是否用索引、扫描行数等，帮助识别性能瓶颈。
+> `EXPLAIN`是MySQL分析查询执行计划的工具，显示如何扫描表、是否用索引、扫描行数等，帮助识别性能瓶颈。
 
 **关键字段**：
+
 - **id**：查询编号，子查询递增。
+  
 - **select_type**：查询类型（SIMPLE、SUBQUERY、DERIVED等）。
+
 - **table**：访问的表。
+
 - **type**：访问类型（ALL全表扫描、index索引扫描、ref非唯一索引等，效率：ALL < index < range < ref < eq_ref < const）。
+
 - **possible_keys**：可能使用的索引。
+
 - **key**：实际使用的索引。
+
 - **rows**：估计扫描行数。
+
 - **Extra**：额外信息（如Using index覆盖索引、Using temporary临时表）。
 
 **示例**：分析电商系统查询。
+
 ```sql
 EXPLAIN SELECT o.OrderID, c.Name
 FROM Orders o
@@ -734,20 +760,27 @@ WHERE o.OrderDate = '2025-09-01';
 ```
 
 **假设无索引**，输出可能如下：
+
 | id | select_type | table   | type | possible_keys | key  | rows | Extra |
 |----|-------------|---------|------|---------------|------|------|-------|
 | 1  | SIMPLE      | o       | ALL  | NULL          | NULL | 1000 | Using where |
 | 1  | SIMPLE      | c       | eq_ref | PRIMARY       | PRIMARY | 1 | |
 
 **分析**：
+
 - `Orders`全表扫描（type=ALL，rows=1000），性能差。
+
 - `Customers`用主键（type=eq_ref），高效。
+
 - **优化**：为`Orders.OrderDate`添加索引。
+
   ```sql
   CREATE INDEX idx_order_date ON Orders (OrderDate);
   ```
 
 **优化后EXPLAIN**：
+
+
 | id | select_type | table   | type | possible_keys | key           | rows | Extra |
 |----|-------------|---------|------|---------------|---------------|------|-------|
 | 1  | SIMPLE      | o       | ref  | idx_order_date| idx_order_date| 10   | Using where |
@@ -762,9 +795,12 @@ WHERE o.OrderDate = '2025-09-01';
 **查询优化**是调整SQL、索引和数据库配置以提高性能。慢查询日志记录执行时间超阈值的查询，用于定位瓶颈。
 
 #### 查询优化技巧
+
 1. **选择性索引**：
-   - 为高频查询列（如`Orders.CustomerID`）或WHERE/JOIN条件添加索引。
-   - 示例：优化多表查询。
+
+   -  为高频查询列（如`Orders.CustomerID`）或WHERE/JOIN条件添加索引。
+
+   -  示例：优化多表查询。
      ```sql
      CREATE INDEX idx_orderitems_order_product ON OrderItems (OrderID, ProductID);
      SELECT o.OrderID, p.Name
@@ -775,20 +811,28 @@ WHERE o.OrderDate = '2025-09-01';
      ```
 
 2. **覆盖索引**：
+
    - 索引包含所有查询字段，免回表。
+
    - 示例：查询订单日期和总价。
+
      ```sql
      CREATE INDEX idx_order_date_price ON Orders (CustomerID, OrderDate, TotalPrice);
      SELECT OrderDate, TotalPrice FROM Orders WHERE CustomerID = 1;  -- Using index
      ```
 
 3. **避免索引失效**：
+
    - 避免在索引列上用函数（如`WHERE UPPER(Name) = 'PHONE'`）。
+
    - 示例：改为`WHERE Name = 'phone'`配合索引。
 
 4. **重写子查询为JOIN**：
+
    - 子查询可能多次执行，JOIN更高效。
+
    - 示例：重写查找选购手机的顾客。
+
      ```sql
      -- 子查询
      SELECT Name FROM Customers WHERE CustomerID IN (
