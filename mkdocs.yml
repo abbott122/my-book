@@ -200,6 +200,16 @@ nav:
     - 并发编程: 编程语言/golang/并发编程/index.md
     - 网络编程: 编程语言/golang/网络编程与Web开发/index.md
     - 项目实战: index.md
+  - ShellScritpt: 
+    - 第一章节 入门: 编程语言/ShellScript/入门/index.md
+    - 第二章节 运算符: 编程语言/ShellScript/运算符/index.md
+    - 第三章节 字符串和数组: 编程语言/ShellScript/字符串和数组/index.md
+    - 第四章节 流程控制: 编程语言/ShellScript/流程控制/index.md
+    - 第五章节 函数: 编程语言/ShellScript/函数/index.md
+    - 进阶部分: index.md
+    - 项目实战: index.md
+
+
 
  
   - 监控系统:
